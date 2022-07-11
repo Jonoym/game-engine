@@ -69,6 +69,7 @@ jobs:
         if: success()
         with:
             severity: info
+            username: Octocat
             details: Test Succeeded!
             avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
@@ -78,6 +79,7 @@ jobs:
         if: failure()
         with:
             severity: error
+            username: Octocat
             details: Test Failed!
             avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
@@ -87,6 +89,7 @@ jobs:
         if: cancelled()
         with:
             severity: warn
+            username: Octocat
             details: Test Cancelled!
             avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
