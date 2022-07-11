@@ -58,7 +58,7 @@ jobs:
         uses: Ilshidur/action-discord@0.3.2
         with:
           # The message to display in the Discord message.
-          args: "Hello There"
+          args: 'Hello There'
 
       - name: Cleanup Gradle Cache
         if: always()
