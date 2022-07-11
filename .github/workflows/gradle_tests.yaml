@@ -31,23 +31,6 @@ jobs:
           ./gradlew --stacktrace test
         env:
           GRADLE_DIR: 'source' # Modify this to wherever './gradlew' is 
-          
-      - name: Set test output for success # Both of these numbers are int codes for red and green respectively; the Discord API uses these for some reason
-        if: always() && steps.tests.conclusion == 'success'
-        run: |
-          echo "TEST_OUTCOME=3066993" >> $GITHUB_ENV
-
-      - name: Set test output for failure
-        if: always() && steps.tests.conclusion != 'success'
-        run: |
-          echo "TEST_OUTCOME=15158332" >> $GITHUB_ENV
-          
-      - name: Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
-        with:
-          args: 'Unit Tests reported **${{ steps.tests.conclusion }}**!'
 
       - name: Cleanup Gradle Cache
         if: always()
