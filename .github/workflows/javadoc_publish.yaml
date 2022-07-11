@@ -9,6 +9,9 @@ on:
       # Push events on main branch
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build_and_publish_jdoc:
     runs-on: ubuntu-latest
@@ -28,7 +31,7 @@ jobs:
           GRADLE_DIR: 'source' # Modify this to wherever './gradlew' is 
 
       - name: Deploy docs to GH Pages
-        uses: JamesIves/github-pages-deploy-action@v4.3.4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: source/core/build/docs/javadoc/ # The folder the action should deploy.
