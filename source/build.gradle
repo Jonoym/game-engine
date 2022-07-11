@@ -20,13 +20,6 @@ sonarqube {
   }
 }
 
-apply plugin: 'java'
-
-javadoc {
-    source = sourceSets.main.allJava
-    classpath = configurations.implementation
-}
-
 allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
