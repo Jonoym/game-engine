@@ -27,7 +27,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = "deco2800-game"
+        appName = "deco2800-game"s
         gdxVersion = '1.9.14'
         roboVMVersion = '2.3.12'
         box2DLightsVersion = '1.5'
@@ -36,7 +36,7 @@ allprojects {
         gdxControllersVersion = '2.1.0'
         junit5Version = '5.7.2'
         junit4Version = '4.13.2'
-        mockitoVersion = '3.8.0'
+        mockitoVersion = '4.4.0'
         gdxUtilsVersion = '0.13.4'
         slf4jVersion = '1.7.30'
     }
