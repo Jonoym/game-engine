@@ -31,7 +31,7 @@ jobs:
         env:
           GRADLE_DIR: 'source' # Modify this to wherever './gradlew' is
 
-      - name: Discord notification
+      - name: Discord notification #
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
