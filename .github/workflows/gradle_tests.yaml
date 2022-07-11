@@ -93,6 +93,20 @@ jobs:
             details: Test Cancelled!
             avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+            
+      - name: Post to Slack # Notify the channel specified in the env variables
+        if: always() && github.ref == 'refs/heads/main' # Always run when on main
+        uses: rtCamp/action-slack-notify@v2.1.3
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} # Same bot used for all, don't change
+          SLACK_CHANNEL: 'general' # Where are we posting to?
+          SLACK_TITLE: 'Test Results'
+          SLACK_MESSAGE: 'Unit Tests reported *${{steps.tests.conclusion}}*! Commit message: ```${{ github.event.head_commit.message }}```'
+          SLACK_COLOR: ${{ job.status }} # Automatically changes color of the message
+          SLACK_USERNAME: DECO Bot
+          SLACK_ICON: https://icons.iconarchive.com/icons/google/noto-emoji-smileys/1024/10103-robot-face-icon.png
+          SLACK_FOOTER: ''
+          MSG_MINIMAL: commit,actions url # We only want the commit link and actions url
 
       - name: Cleanup Gradle Cache
         if: always()
