@@ -50,19 +50,41 @@ jobs:
         run: |
           echo "TEST_OUTCOME=15158332" >> $GITHUB_ENV
           
-      - name: Discord notification
-        if: always() && github.ref == 'refs/heads/main' # Always run when on main
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }} # DO NOT SET UP WEBHOOKS IN GITHUB REPO SETTINGS, ADD THE URL TO A SECRET
-          DISCORD_EMBEDS: '[{
-                              "title": "Build Information",
-                              "description": "Commit message: ```${{ env.COMMIT_MSG }}...```",
-                              "color": "${{ env.TEST_OUTCOME }}",
-                              "url": "${{ env.ACTIONS_URL }}"
-                            }]'
-        uses: Ilshidur/action-discord@master
-        with:
-          args: 'Unit Tests reported **${{ steps.tests.conclusion }}**!'
+#       - name: Discord notification
+#         if: always() && github.ref == 'refs/heads/main' # Always run when on main
+#         env:
+#           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }} # DO NOT SET UP WEBHOOKS IN GITHUB REPO SETTINGS, ADD THE URL TO A SECRET
+#           DISCORD_EMBEDS: '[{
+#                               "title": "Build Information",
+#                               "description": "Commit message: ```${{ env.COMMIT_MSG }}...```",
+#                               "color": "${{ env.TEST_OUTCOME }}",
+#                               "url": "${{ env.ACTIONS_URL }}"
+#                             }]'
+#         uses: Ilshidur/action-discord@master
+#         with:
+#           args: 'Unit Tests reported **${{ steps.tests.conclusion }}**!'
+
+      - name: Test Success
+          uses: rjstone/discord-webhook-notify@v1
+          if: success()
+          with:
+              severity: info
+              details: Test Succeeded!
+              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Test Failure
+          uses: rjstone/discord-webhook-notify@v1
+          if: failure()
+          with:
+              severity: error
+              details: Test Failed!
+              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Test Cancelled
+          uses: rjstone/discord-webhook-notify@v1
+          if: cancelled()
+          with:
+              severity: warn
+              details: Test Cancelled!
+              webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
       - name: Cleanup Gradle Cache
         if: always()
