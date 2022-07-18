@@ -18,7 +18,7 @@ apply plugin: 'java'
 
 javadoc {
     source = sourceSets.main.allJava
-    classpath = configurations.implementation
+    classpath = configurations.compileClasspath
 }
 
 sonarqube {
