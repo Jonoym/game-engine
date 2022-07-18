@@ -147,7 +147,17 @@ public class Entity {
    */
   public void scaleHeight(float y) {
     this.scale.x = this.scale.x / this.scale.y * y;
-    this.scale.y = y;
+    this.scale.y = returnValue(y);
+  }
+
+  /**
+   * Returns the value passed in as a parameter
+   *
+   * @param y
+   * @return
+   */
+  public float returnValue(float y) {
+    return y;
   }
 
   /**
