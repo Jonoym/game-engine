@@ -24,7 +24,5 @@ jacocoTestReport {
 }
 
 javadoc {
-    options {
-        links 'https://libgdx.badlogicgames.com/ci/nightlies/docs/api/'
-    }
+
 }
