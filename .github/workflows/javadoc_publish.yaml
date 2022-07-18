@@ -1,14 +1,14 @@
 name: Publish Javadoc to web
 
-permissions:
-  contents: write
-
 on: 
   push:
     # Sequence of patterns matched against refs/heads
     branches:    
       # Push events on main branch
       - main
+
+permissions:
+  contents: write
 
 jobs:
   build_and_publish_jdoc:
