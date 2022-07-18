@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        mavenLocal()
         mavenCentral()
         maven { url "https://plugins.gradle.org/m2/" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
@@ -10,6 +11,14 @@ buildscript {
 
 plugins {
   id "org.sonarqube" version "3.4.0.2513"
+  id "jacoco"
+}
+
+apply plugin: 'java'
+
+javadoc {
+    source = sourceSets.main.allJava
+    classpath = configurations.compile
 }
 
 sonarqube {
@@ -42,6 +51,7 @@ allprojects {
     }
 
     repositories {
+        mavenLocal()
         mavenCentral()
         google()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
