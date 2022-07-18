@@ -1,5 +1,8 @@
 name: Publish Javadoc to web
 
+permissions:
+  contents: write
+
 on: 
   push:
     # Sequence of patterns matched against refs/heads
