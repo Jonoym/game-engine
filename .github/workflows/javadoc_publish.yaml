@@ -29,7 +29,7 @@ jobs:
           GRADLE_DIR: 'source' # Modify this to wherever './gradlew' is 
 
       - name: Deploy docs to GH Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@4.3.4
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: source/core/build/docs/javadoc/ # The folder the action should deploy.
